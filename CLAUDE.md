@@ -1,133 +1,83 @@
-# Claude Code Context
+# CLAUDE.md
 
-## Project Overview
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Personal tech blog for Ahmad Luqman at https://blog.ahmadluqman.com
+## Project
+
+Personal tech blog at https://blog.ahmadluqman.com
 
 **Stack**: Hugo (extended) + Congo theme + Dracula colors + Cloudflare Pages
 
-## Available CLI Tools
-
-| Tool | Command | Purpose |
-|------|---------|---------|
-| Hugo | `hugo` | Static site generator (extended version with SCSS) |
-| GitHub CLI | `gh` | Repo management, Actions, PRs |
-| Wrangler | `wrangler` | Cloudflare Pages deployments |
-| Make | `make` | Project automation |
-
-## Quick Commands
+## Commands
 
 ```bash
 # Development
-make dev                    # Start local server at localhost:1313
+make dev                    # Start local server at localhost:1313 (includes drafts)
+make prod                   # Server without drafts
 make build                  # Production build to ./public
 
 # Content
-make new title="Post Title" # Create new post with date-slug
-make draft title="WIP"      # Create draft post
-make stats                  # Show content statistics
+make new title="Post Title" # Create post: content/posts/YYYY-MM-DD-slug.md
+make project title="Name"   # Create project page
 
-# Deployment
-git push origin main        # Auto-deploys via GitHub Actions
-make publish                # Interactive commit + push
+# Publishing
+make publish                # Interactive commit + push (triggers deploy)
+git push origin main        # Direct deploy via GitHub Actions
 
-# Cloudflare
-wrangler pages project list              # List projects
-wrangler pages deploy public             # Manual deploy (prefer GH Actions)
+# Utilities
+make stats                  # Content statistics
+make check                  # Find broken links, missing descriptions
+make update-theme           # Update Congo submodule
+make clean                  # Remove build artifacts
 ```
 
-## Project Structure
+## Architecture
 
 ```
-├── .github/workflows/     # deploy.yml (main→prod), preview.yml (PRs)
-├── archetypes/            # Post templates (posts.md, default.md)
-├── assets/css/
-│   ├── custom.css         # Typography and layout overrides
-│   └── schemes/dracula.css # Dracula color scheme
-├── config/_default/
-│   ├── hugo.toml          # Main config (baseURL, build settings)
-│   ├── params.toml        # Theme params, author info, features
-│   └── menus.toml         # Navigation menus
-├── content/
-│   ├── about.md           # About page
-│   ├── posts/             # Blog posts
-│   └── projects/          # Project showcases
-└── themes/congo/          # Git submodule (don't edit directly)
+config/_default/
+├── hugo.toml          # baseURL, build settings, markup config
+├── params.toml        # Theme config, colorScheme="dracula", author info
+└── menus.toml         # Navigation structure
+
+assets/css/
+├── schemes/dracula.css # Color scheme (cyan primary, purple accents)
+└── custom.css          # Typography overrides
+
+content/
+├── posts/              # Blog posts (YYYY-MM-DD-slug.md format)
+├── projects/           # Project showcases
+└── about.md            # About page
+
+themes/congo/           # Git submodule - don't edit directly
 ```
 
-## Configuration
+## Deployment
 
-- **baseURL**: https://blog.ahmadluqman.com/
-- **Theme**: Congo (git submodule, stable branch)
-- **Color scheme**: Dracula (`colorScheme = "dracula"` in params.toml)
-- **Default appearance**: Dark mode, no auto-switch
+- **Push to main** → GitHub Actions → Hugo build → Cloudflare Pages
+- **PR branches** → Preview deploys with drafts included
+- **Production**: https://blog.ahmadluqman.com
+- **Previews**: https://{branch}.ahmadluqman-blog.pages.dev
 
-## GitHub Actions
-
-- **deploy.yml**: Triggers on push to `main` → builds → deploys to Cloudflare Pages
-- **preview.yml**: Triggers on PRs → builds with drafts → deploys preview → comments URL
-
-**Required secrets** (Settings → Secrets → Actions):
-- `CLOUDFLARE_API_TOKEN`
-- `CLOUDFLARE_ACCOUNT_ID`
-
-## Cloudflare Pages
-
-- **Project**: `ahmadluqman-blog`
-- **Production URL**: https://blog.ahmadluqman.com
-- **Preview URL pattern**: https://<branch>.ahmadluqman-blog.pages.dev
-
-## Content Guidelines
-
-### Post Frontmatter
+## Post Frontmatter
 
 ```yaml
 ---
 title: "Post Title"
 date: 2024-12-29
-draft: false
-description: "SEO description (150 chars)"
-summary: "Card summary for list pages"
+draft: false                 # Set true to hide from production
+description: "SEO desc"      # ~150 chars
+summary: "Card text"         # List page preview
 tags: ["tag1", "tag2"]
-categories: ["tutorial"]  # tutorial, experience, til, tooling, architecture
+categories: ["tutorial"]     # tutorial, experience, til, tooling, architecture
 showTableOfContents: true
 ---
 ```
 
-### Categories
+## Key Files
 
-- `tutorial` - Step-by-step guides
-- `experience` - Lessons learned, war stories
-- `til` - Today I Learned (short notes)
-- `tooling` - Developer tools and workflow
-- `architecture` - System design, decisions
-
-## Common Tasks
-
-### Update Congo theme
-```bash
-git submodule update --remote themes/congo
-```
-
-### Check for issues
-```bash
-make check  # Broken links, missing descriptions, long titles
-```
-
-### Add comments (Giscus)
-1. Set up Giscus at https://giscus.app
-2. Add config to `params.toml`:
-```toml
-[giscus]
-  repo = "ahmad-luqman/ahmadluqman-blog"
-  repoId = "..."
-  category = "Comments"
-  categoryId = "..."
-```
-
-## Author Info
-
-- **Name**: Ahmad Luqman
-- **Email**: hi@ahmadluqman.com
-- **GitHub**: github.com/ahmad-luqman
-- **Location**: Pakistan
+| File | Purpose |
+|------|---------|
+| `config/_default/params.toml` | Theme settings, author info, feature toggles |
+| `assets/css/schemes/dracula.css` | Color scheme (CSS custom properties) |
+| `archetypes/posts.md` | Template for new posts |
+| `.github/workflows/deploy.yml` | Production deploy pipeline |
