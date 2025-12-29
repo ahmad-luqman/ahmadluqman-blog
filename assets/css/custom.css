@@ -1,0 +1,200 @@
+/* 
+ * Custom CSS for Ahmad Luqman's Blog
+ * Typography and layout enhancements
+ */
+
+/* Enhanced typography */
+.prose {
+  font-size: 1.075rem;
+  line-height: 1.8;
+}
+
+/* Better heading spacing */
+.prose h1 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgb(68, 71, 90);
+}
+
+.prose h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Paragraph spacing */
+.prose p {
+  margin-bottom: 1.25rem;
+}
+
+/* List styling */
+.prose ul, .prose ol {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+/* Code block enhancements */
+.prose pre {
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+
+/* Inline code */
+.prose :not(pre) > code {
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+/* Images */
+.prose img {
+  border-radius: 0.5rem;
+  margin: 1.5rem auto;
+}
+
+.prose figure {
+  margin: 2rem 0;
+}
+
+.prose figcaption {
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgb(98, 114, 164);
+  margin-top: 0.5rem;
+}
+
+/* Tables */
+.prose table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+}
+
+.prose th {
+  background-color: rgb(68, 71, 90);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.prose td {
+  padding: 0.75rem;
+  border-bottom: 1px solid rgb(68, 71, 90);
+}
+
+.prose tr:hover td {
+  background-color: rgba(68, 71, 90, 0.3);
+}
+
+/* Callout/Note boxes */
+.prose .note,
+.prose .tip,
+.prose .warning,
+.prose .danger {
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid;
+}
+
+.prose .note {
+  background-color: rgba(98, 114, 164, 0.2);
+  border-left-color: rgb(98, 114, 164);
+}
+
+.prose .tip {
+  background-color: rgba(80, 250, 123, 0.1);
+  border-left-color: rgb(80, 250, 123);
+}
+
+.prose .warning {
+  background-color: rgba(255, 184, 108, 0.1);
+  border-left-color: rgb(255, 184, 108);
+}
+
+.prose .danger {
+  background-color: rgba(255, 85, 85, 0.1);
+  border-left-color: rgb(255, 85, 85);
+}
+
+/* Article meta info */
+.article-meta {
+  color: rgb(98, 114, 164);
+  font-size: 0.9rem;
+}
+
+/* Reading progress bar (optional) */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, rgb(189, 147, 249), rgb(255, 121, 198));
+  z-index: 100;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better focus indicator */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgb(139, 233, 253);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .prose {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  
+  .prose a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  
+  .prose pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
+
+/* Mobile responsiveness tweaks */
+@media (max-width: 640px) {
+  .prose {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  
+  .prose pre {
+    font-size: 0.85rem;
+    padding: 1rem;
+  }
+  
+  .prose h1 {
+    font-size: 1.75rem;
+  }
+  
+  .prose h2 {
+    font-size: 1.5rem;
+  }
+}

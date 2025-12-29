@@ -1,0 +1,32 @@
+# Main navigation menu
+
+[[main]]
+  name = "Posts"
+  pageRef = "posts"
+  weight = 10
+
+[[main]]
+  name = "Projects"
+  pageRef = "projects"
+  weight = 20
+
+[[main]]
+  name = "Tags"
+  pageRef = "tags"
+  weight = 30
+
+[[main]]
+  name = "About"
+  pageRef = "about"
+  weight = 40
+
+# Footer menu (optional)
+[[footer]]
+  name = "RSS"
+  url = "/index.xml"
+  weight = 10
+
+[[footer]]
+  name = "Contact"
+  url = "mailto:hi@ahmadluqman.com"
+  weight = 20

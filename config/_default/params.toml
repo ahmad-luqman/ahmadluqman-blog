@@ -1,0 +1,70 @@
+# Congo theme parameters
+# https://jpanther.github.io/congo/docs/configuration/
+
+# Color scheme - we'll create a custom "dracula" scheme
+colorScheme = "dracula"
+
+# Default appearance (dark fits Dracula perfectly)
+defaultAppearance = "dark"
+autoSwitchAppearance = false  # Keep Dracula dark always, or set true for light/dark toggle
+
+# Enable search
+enableSearch = true
+enableCodeCopy = true
+
+# Article settings
+article.showDate = true
+article.showDateUpdated = true
+article.showAuthor = true
+article.showReadingTime = true
+article.showTableOfContents = true
+article.showTaxonomies = true
+article.showWordCount = false
+article.showPagination = true
+article.showComments = true  # Enable when you add Giscus
+article.sharingLinks = ["twitter", "linkedin", "reddit", "email"]
+
+# List page settings
+list.showCards = true
+list.showTableOfContents = false
+list.showSummary = true
+list.groupByYear = true
+
+# Homepage layout: page, profile, hero, card, background
+homepage.layout = "profile"
+homepage.showRecent = true
+homepage.recentLimit = 5
+
+# Header
+header.layout = "basic"  # basic, hamburger, hybrid, custom
+
+# Footer
+footer.showCopyright = true
+footer.showThemeAttribution = true
+footer.showAppearanceSwitcher = true
+footer.showScrollToTop = true
+
+# Sitemap
+sitemap.excludedKinds = ["taxonomy", "term"]
+
+# Taxonomy
+taxonomy.showTermCount = true
+
+# Fathom Analytics (privacy-friendly alternative)
+# fathomAnalytics.site = "ABC12345"
+
+# Verification
+# verification.google = ""
+# verification.bing = ""
+
+# Author info (shown on homepage and articles)
+[author]
+  name = "Ahmad Luqman"
+  image = "images/author.jpg"
+  headline = "Software Engineer"
+  bio = "Building things with Django, React, and curiosity. Based in Pakistan."
+  links = [
+    { github = "https://github.com/ahmad-luqman" },
+    { linkedin = "https://linkedin.com/in/ahmadluqman" },
+    { email = "mailto:hi@ahmadluqman.com" },
+  ]

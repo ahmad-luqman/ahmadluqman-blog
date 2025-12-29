@@ -1,0 +1,70 @@
+# Ahmad Luqman's Tech Blog
+# Hugo configuration for Congo theme with Dracula color scheme
+
+baseURL = "https://ahmadluqman.com/"
+languageCode = "en"
+title = "Ahmad Luqman"
+theme = "congo"
+
+# Build settings
+enableRobotsTXT = true
+summaryLength = 30
+enableEmoji = true
+
+[pagination]
+  pagerSize = 10
+
+# Better URLs
+[permalinks]
+  posts = "/posts/:slug/"
+  projects = "/projects/:slug/"
+
+# Taxonomies
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  series = "series"
+
+# Output formats
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# Minify output
+[minify]
+  disableXML = true
+  minifyOutput = true
+
+# Markup settings
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    noClasses = false
+    style = "dracula"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+
+# Related content
+[related]
+  includeNewer = true
+  threshold = 80
+  toLower = true
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+  [[related.indices]]
+    name = "categories"
+    weight = 80
+  [[related.indices]]
+    name = "date"
+    weight = 10
+
+# Sitemap
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
