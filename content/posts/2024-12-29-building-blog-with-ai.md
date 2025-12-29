@@ -2,7 +2,7 @@
 title: "How I Finally Built My Tech Blog After 10 Years (With a Little AI Help)"
 date: 2024-12-29
 lastmod: 2024-12-29
-draft: true
+draft: false
 description: "A developer's honest journey from a neglected domain to a live blog in one afternoon. What worked, what didn't, and some thoughts on AI-assisted workflows."
 summary: "I had a domain sitting unused for 10 years. Here's how I finally got unstuck, what I learned along the way, and some honest reflections on working with AI tools."
 
