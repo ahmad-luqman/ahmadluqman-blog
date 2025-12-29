@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Personal tech blog for Ahmad Luqman at https://ahmadluqman.com
+Personal tech blog for Ahmad Luqman at https://blog.ahmadluqman.com
 
 **Stack**: Hugo (extended) + Congo theme + Dracula colors + Cloudflare Pages
 
@@ -57,7 +57,7 @@ wrangler pages deploy public             # Manual deploy (prefer GH Actions)
 
 ## Configuration
 
-- **baseURL**: https://ahmadluqman.com/
+- **baseURL**: https://blog.ahmadluqman.com/
 - **Theme**: Congo (git submodule, stable branch)
 - **Color scheme**: Dracula (`colorScheme = "dracula"` in params.toml)
 - **Default appearance**: Dark mode, no auto-switch
@@ -74,7 +74,7 @@ wrangler pages deploy public             # Manual deploy (prefer GH Actions)
 ## Cloudflare Pages
 
 - **Project**: `ahmadluqman-blog`
-- **Production URL**: https://ahmadluqman.com
+- **Production URL**: https://blog.ahmadluqman.com
 - **Preview URL pattern**: https://<branch>.ahmadluqman-blog.pages.dev
 
 ## Content Guidelines

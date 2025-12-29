@@ -1,7 +1,7 @@
 # Ahmad Luqman's Tech Blog
 # Hugo configuration for Congo theme with Dracula color scheme
 
-baseURL = "https://ahmadluqman.com/"
+baseURL = "https://blog.ahmadluqman.com/"
 languageCode = "en"
 title = "Ahmad Luqman"
 theme = "congo"
