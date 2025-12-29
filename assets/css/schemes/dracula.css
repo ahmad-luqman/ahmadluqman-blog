@@ -1,66 +1,68 @@
-/* 
- * Dracula Color Scheme for Congo Hugo Theme
+/*
+ * Dracula Color Scheme for Congo Hugo Theme (Refined)
  * https://draculatheme.com/
- * 
+ *
  * Dracula Palette:
- * Background:    #282a36
- * Current Line:  #44475a
- * Foreground:    #f8f8f2
- * Comment:       #6272a4
- * Cyan:          #8be9fd
- * Green:         #50fa7b
- * Orange:        #ffb86c
- * Pink:          #ff79c6
- * Purple:        #bd93f9
- * Red:           #ff5555
- * Yellow:        #f1fa8c
+ * Background:    #282a36 (40, 42, 54)
+ * Current Line:  #44475a (68, 71, 90)
+ * Foreground:    #f8f8f2 (248, 248, 242)
+ * Comment:       #6272a4 (98, 114, 164)
+ * Cyan:          #8be9fd (139, 233, 253) - PRIMARY
+ * Green:         #50fa7b (80, 250, 123)
+ * Orange:        #ffb86c (255, 184, 108)
+ * Pink:          #ff79c6 (255, 121, 198)
+ * Purple:        #bd93f9 (189, 147, 249) - ACCENT/HOVER ONLY
+ * Red:           #ff5555 (255, 85, 85)
+ * Yellow:        #f1fa8c (241, 250, 140)
+ *
+ * Design: Cyan primary, purple for hover/accents, gray-blue for muted text
  */
 
 :root {
-  /* Dracula Dark Theme (default) */
-  --color-neutral: 231, 232, 242;           /* Foreground-ish for text */
+  /* Neutral scale - Dracula backgrounds and foregrounds */
+  --color-neutral: 231, 232, 242;
   --color-neutral-50: 248, 248, 242;        /* Foreground #f8f8f2 */
   --color-neutral-100: 241, 241, 235;
-  --color-neutral-200: 225, 225, 220;
-  --color-neutral-300: 189, 147, 249;       /* Purple for subtle highlights */
-  --color-neutral-400: 98, 114, 164;        /* Comment #6272a4 */
+  --color-neutral-200: 200, 205, 215;
+  --color-neutral-300: 150, 160, 180;
+  --color-neutral-400: 98, 114, 164;        /* Comment #6272a4 - muted text */
   --color-neutral-500: 68, 71, 90;          /* Current Line #44475a */
   --color-neutral-600: 55, 58, 77;
   --color-neutral-700: 45, 47, 63;
   --color-neutral-800: 40, 42, 54;          /* Background #282a36 */
   --color-neutral-900: 33, 34, 44;          /* Darker background */
 
-  /* Primary color: Purple (Dracula signature) */
-  --color-primary-50: 245, 240, 255;
-  --color-primary-100: 235, 225, 255;
-  --color-primary-200: 220, 200, 255;
-  --color-primary-300: 200, 170, 255;
-  --color-primary-400: 189, 147, 249;       /* Purple #bd93f9 */
-  --color-primary-500: 170, 130, 240;
-  --color-primary-600: 150, 110, 220;
-  --color-primary-700: 130, 90, 200;
-  --color-primary-800: 100, 70, 160;
-  --color-primary-900: 70, 50, 120;
+  /* Primary color: Cyan - clean, readable, less aggressive than purple */
+  --color-primary-50: 230, 250, 255;
+  --color-primary-100: 200, 245, 255;
+  --color-primary-200: 170, 240, 255;
+  --color-primary-300: 139, 233, 253;       /* Cyan #8be9fd */
+  --color-primary-400: 139, 233, 253;       /* Cyan #8be9fd */
+  --color-primary-500: 120, 210, 235;
+  --color-primary-600: 100, 190, 215;
+  --color-primary-700: 80, 160, 190;
+  --color-primary-800: 60, 130, 160;
+  --color-primary-900: 40, 100, 130;
 
-  /* Secondary color: Pink (Dracula accent) */
-  --color-secondary-50: 255, 240, 248;
-  --color-secondary-100: 255, 225, 240;
-  --color-secondary-200: 255, 200, 230;
-  --color-secondary-300: 255, 150, 210;
-  --color-secondary-400: 255, 121, 198;     /* Pink #ff79c6 */
-  --color-secondary-500: 240, 100, 180;
-  --color-secondary-600: 220, 80, 160;
-  --color-secondary-700: 180, 60, 130;
-  --color-secondary-800: 140, 40, 100;
-  --color-secondary-900: 100, 30, 70;
+  /* Secondary color: Purple - reserved for hover states and subtle accents */
+  --color-secondary-50: 245, 240, 255;
+  --color-secondary-100: 235, 225, 255;
+  --color-secondary-200: 220, 200, 255;
+  --color-secondary-300: 200, 170, 255;
+  --color-secondary-400: 189, 147, 249;     /* Purple #bd93f9 */
+  --color-secondary-500: 170, 130, 240;
+  --color-secondary-600: 150, 110, 220;
+  --color-secondary-700: 130, 90, 200;
+  --color-secondary-800: 100, 70, 160;
+  --color-secondary-900: 70, 50, 120;
 }
 
 /* Dark mode (default for Dracula) */
 .dark {
-  --color-neutral: 248, 248, 242;           /* Foreground */
+  --color-neutral: 248, 248, 242;
 }
 
-/* Light mode variant (optional - Dracula-inspired light) */
+/* Light mode variant (Dracula-inspired light) */
 .light {
   --color-neutral: 40, 42, 54;
   --color-neutral-50: 33, 34, 44;
@@ -75,36 +77,137 @@
   --color-neutral-900: 248, 248, 252;
 }
 
-/* Additional Dracula-specific customizations */
+/* ============================================
+   TYPOGRAPHY & LINKS
+   ============================================ */
 
-/* Code blocks - Dracula syntax highlighting */
+/* Links - Cyan default, purple on hover */
+.prose a {
+  color: rgb(139, 233, 253);                /* Cyan */
+  text-decoration: none;
+}
+
+.prose a:hover {
+  color: rgb(189, 147, 249);                /* Purple on hover */
+  text-decoration: underline;
+}
+
+/* Year headings and muted text - gray-blue */
+.group-year,
+time,
+.text-neutral-500,
+.article-meta {
+  color: rgb(98, 114, 164) !important;      /* Comment gray-blue #6272a4 */
+}
+
+/* ============================================
+   CODE BLOCKS
+   ============================================ */
+
 .prose pre {
-  background-color: rgb(40, 42, 54) !important;  /* Dracula background */
-  border: 1px solid rgb(68, 71, 90);             /* Current line border */
+  background-color: rgb(40, 42, 54) !important;
+  border: 1px solid rgb(68, 71, 90);
 }
 
 .prose code {
-  color: rgb(255, 121, 198);                     /* Pink for inline code */
-  background-color: rgb(68, 71, 90);             /* Current line background */
+  color: rgb(139, 233, 253);                /* Cyan for inline code */
+  background-color: rgb(68, 71, 90);
 }
 
 .prose pre code {
-  color: rgb(248, 248, 242);                     /* Foreground in code blocks */
+  color: rgb(248, 248, 242);
   background-color: transparent;
 }
 
-/* Links - Cyan on hover */
-.prose a:hover {
-  color: rgb(139, 233, 253);                     /* Cyan #8be9fd */
+/* ============================================
+   INTERACTIVE ELEMENTS
+   ============================================ */
+
+/* Tags and badges - subtle, purple on hover */
+.badge,
+[class*="tag"] {
+  background-color: rgb(68, 71, 90);
+  color: rgb(248, 248, 242);
+  transition: all 0.2s ease;
 }
 
-/* Selection color */
+.badge:hover,
+[class*="tag"]:hover {
+  background-color: rgb(189, 147, 249);     /* Purple on hover */
+  color: rgb(40, 42, 54);
+}
+
+/* Buttons - cyan default, purple hover */
+button, .btn,
+[type="submit"] {
+  transition: all 0.2s ease;
+}
+
+button:hover, .btn:hover,
+[type="submit"]:hover {
+  background-color: rgb(189, 147, 249);     /* Purple on hover */
+}
+
+/* Table of Contents - cyan active, purple hover */
+.toc a {
+  color: rgb(98, 114, 164);                 /* Gray-blue default */
+}
+
+.toc a:hover {
+  color: rgb(189, 147, 249);                /* Purple on hover */
+}
+
+.toc a.active {
+  color: rgb(139, 233, 253);                /* Cyan when active */
+}
+
+/* ============================================
+   STRUCTURAL ELEMENTS
+   ============================================ */
+
+/* Blockquotes - cyan accent */
+.prose blockquote {
+  border-left-color: rgb(139, 233, 253);    /* Cyan */
+  color: rgb(200, 205, 215);
+}
+
+/* Horizontal rules */
+.prose hr {
+  border-color: rgb(68, 71, 90);
+}
+
+/* Tables */
+.prose th {
+  background-color: rgb(68, 71, 90);
+  color: rgb(139, 233, 253);                /* Cyan headers */
+}
+
+.prose tr:hover td {
+  background-color: rgba(68, 71, 90, 0.5);
+}
+
+/* ============================================
+   SELECTION & FOCUS
+   ============================================ */
+
 ::selection {
-  background-color: rgb(68, 71, 90);             /* Current line */
-  color: rgb(248, 248, 242);                     /* Foreground */
+  background-color: rgb(189, 147, 249);     /* Purple selection */
+  color: rgb(40, 42, 54);
 }
 
-/* Scrollbar styling (Webkit browsers) */
+*:focus {
+  outline-color: rgb(139, 233, 253);        /* Cyan focus ring */
+}
+
+*:focus-visible {
+  outline: 2px solid rgb(139, 233, 253);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -123,38 +226,37 @@
   background: rgb(98, 114, 164);
 }
 
-/* Table of Contents active link */
-.toc a.active {
-  color: rgb(189, 147, 249);                     /* Purple */
+/* ============================================
+   NAVIGATION & HEADER
+   ============================================ */
+
+/* Nav links - gray-blue, cyan on hover */
+nav a {
+  color: rgb(200, 205, 215);
 }
 
-/* Tags and categories */
-.badge {
-  background-color: rgb(68, 71, 90);
-  color: rgb(248, 248, 242);
+nav a:hover {
+  color: rgb(139, 233, 253);                /* Cyan on hover */
 }
 
-.badge:hover {
-  background-color: rgb(189, 147, 249);
-  color: rgb(40, 42, 54);
+nav a[aria-current="page"],
+nav a.active {
+  color: rgb(139, 233, 253);                /* Cyan for current page */
 }
 
-/* Blockquotes - Green accent */
-.prose blockquote {
-  border-left-color: rgb(80, 250, 123);          /* Green #50fa7b */
+/* ============================================
+   CARDS & LISTS
+   ============================================ */
+
+/* Post cards - subtle purple glow on hover */
+article:hover,
+.card:hover {
+  box-shadow: 0 0 0 1px rgba(189, 147, 249, 0.3);
 }
 
-/* Horizontal rules */
-.prose hr {
-  border-color: rgb(68, 71, 90);
-}
-
-/* Focus states - Cyan */
-*:focus {
-  outline-color: rgb(139, 233, 253);
-}
-
-/* Button hover states */
-button:hover, .btn:hover {
-  background-color: rgb(98, 114, 164);
+/* Reading time, date, word count - muted */
+.reading-time,
+.word-count,
+.post-date {
+  color: rgb(98, 114, 164);                 /* Gray-blue */
 }
