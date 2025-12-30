@@ -2,7 +2,7 @@
 # Build site with multiple themes for runtime switching
 # Usage: ./scripts/build-all-themes.sh
 
-set -ex  # Enable debug mode to show each command
+set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
@@ -111,7 +111,7 @@ build_all_themes() {
     while IFS= read -r line || [[ -n "$line" ]]; do
         [[ "$line" =~ ^#.*$ ]] && continue
         [[ -z "$line" ]] && continue
-        ((total++))
+        ((++total))
     done < "$THEMES_FILE"
 
     log_info "Building $total themes..."
@@ -131,7 +131,7 @@ build_all_themes() {
         [[ "$line" =~ ^#.*$ ]] && continue
         [[ -z "$line" ]] && continue
 
-        ((count++))
+        ((++count))
         local theme_path="$line"
         local theme_name=$(get_theme_name "$theme_path")
         local theme_output="$THEMES_OUTPUT_DIR/$theme_name"
@@ -144,17 +144,17 @@ build_all_themes() {
         # Fetch theme module
         if ! hugo mod get -u 2>/dev/null; then
             log_warn "Failed to fetch module: $theme_path"
-            ((failed++))
+            ((++failed))
             failed_themes="$failed_themes\n  - $theme_name"
             continue
         fi
 
         # Build to theme directory
         if hugo --minify --gc -d "$theme_output" 2>/dev/null; then
-            ((success++))
+            ((++success))
             log_info "Built: $theme_name"
         else
-            ((failed++))
+            ((++failed))
             failed_themes="$failed_themes\n  - $theme_name"
             log_warn "Build failed: $theme_name"
         fi

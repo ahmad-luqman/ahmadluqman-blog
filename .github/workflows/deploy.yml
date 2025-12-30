@@ -40,14 +40,7 @@ jobs:
 
       - name: Build (Multi-Theme)
         if: env.MULTI_THEME_BUILD == 'true'
-        run: |
-          echo "=== Debug info ==="
-          pwd
-          ls -la scripts/
-          cat scripts/build-all-themes.sh | head -10
-          echo "=== Running build script ==="
-          chmod +x ./scripts/build-all-themes.sh
-          ./scripts/build-all-themes.sh
+        run: ./scripts/build-all-themes.sh
 
       - name: Build (Single Theme)
         if: env.MULTI_THEME_BUILD != 'true'
