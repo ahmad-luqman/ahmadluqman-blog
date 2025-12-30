@@ -85,10 +85,10 @@ Here's what an AI-assisted development loop actually looks like:
 ┌────────────────────────────────────────────────────────────┐
 │                       CLAUDE CODE                          │
 │                                                            │
-│     Read files ──► Plan ──► Write ──► Test ──► Fix        │
-│                                         │       │         │
-│                                         └───────┘         │
-│                                       (auto-iterate)      │
+│     Read files ──► Plan ──► Write ──► Test ──► Fix         │
+│                                         │       │          │
+│                                         └───────┘          │
+│                                       (auto-iterate)       │
 └────────────────────────────┬───────────────────────────────┘
                              │
                              ▼
