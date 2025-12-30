@@ -76,47 +76,41 @@ I exported the Claude Code session transcript. Here's what an afternoon of "AI-a
 Here's what an AI-assisted development loop actually looks like:
 
 ```text
-┌────────────────────────────────────────────────────────────────┐
-│                  AI-ASSISTED DEVELOPMENT FLOW                  │
-└────────────────────────────────────────────────────────────────┘
-
-  ┌──────────┐
-  │    ME    │   "Build a favicon generator with
-  │ (Human)  │    these architecture principles..."
-  └────┬─────┘
-       │
-       ▼
-  ┌────────────────────────────────────────────────────────┐
-  │                     CLAUDE CODE                        │
-  │                                                        │
-  │    Read files ──► Plan ──► Write ──► Test ──► Fix     │
-  │                                        │       │      │
-  │                                        └───────┘      │
-  │                                      (auto-iterate)   │
-  │                                                        │
-  └────────────────────────┬───────────────────────────────┘
-                           │
-                           ▼
-                    ┌─────────────┐
-                    │   Output    │
-                    │  "Here's    │
-                    │  what I     │
-                    │  built..."  │
-                    └──────┬──────┘
-                           │
-                           ▼
-                    ┌─────────────┐       ┌──────────────┐
-                    │     ME      │  YES  │  Next task   │
-                    │  Review &   │──────►│  or tweak    │───┐
-                    │   Decide    │       └──────────────┘   │
-                    └──────┬──────┘                          │
-                           │ NO                              │
-                           ▼                                 │
-                    ┌─────────────┐                          │
-                    │   COMMIT    │        ┌────────────────┘
-                    └─────────────┘        │
-                                           ▼
-                                    (back to Claude)
+              ┌──────────────┐
+              │      ME      │  "Build a favicon generator with
+              │   (Human)    │   these architecture principles..."
+              └──────┬───────┘
+                     │
+                     ▼
+┌────────────────────────────────────────────────────────────┐
+│                       CLAUDE CODE                          │
+│                                                            │
+│     Read files ──► Plan ──► Write ──► Test ──► Fix        │
+│                                         │       │         │
+│                                         └───────┘         │
+│                                       (auto-iterate)      │
+└────────────────────────────┬───────────────────────────────┘
+                             │
+                             ▼
+                      ┌─────────────┐
+                      │   Output    │
+                      │  "Here's    │
+                      │  what I     │
+                      │  built..."  │
+                      └──────┬──────┘
+                             │
+                             ▼
+                      ┌─────────────┐  YES   ┌──────────────┐
+                      │     ME      │───────►│  Next task   │──┐
+                      │  Review &   │        │  or tweak    │  │
+                      │   Decide    │        └──────────────┘  │
+                      └──────┬──────┘                          │
+                             │ NO                              │
+                             ▼                                 │
+                      ┌─────────────┐       ┌──────────────────┘
+                      │   COMMIT    │       │
+                      └─────────────┘       ▼
+                                     (back to Claude)
 ```
 
 The key insight: **I prompted 27 times, but Claude iterated hundreds of times internally** (reading, writing, testing, fixing) between my prompts.
