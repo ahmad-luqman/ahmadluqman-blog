@@ -1,0 +1,57 @@
+# Hugo Blog Themes - Curated list for multi-theme build
+# Format: github.com/owner/repo (or owner/repo for GitHub)
+# Lines starting with # are comments
+#
+# Add more themes by appending to this file
+# Run: make build-all-themes
+
+# Tier 1: Primary themes (well-tested)
+github.com/jpanther/congo/v2
+github.com/adityatelange/hugo-PaperMod
+github.com/CaiJimmy/hugo-theme-stack/v3
+github.com/panr/hugo-theme-terminal/v4
+github.com/luizdepra/hugo-coder
+
+# Tier 2: Popular blog themes
+github.com/nunocoracao/blowfish/v2
+github.com/dillonzq/LoveIt
+github.com/razonyang/hugo-theme-bootstrap
+github.com/chipzoller/hugo-clarity
+github.com/halogenica/beautifulhugo
+github.com/rhazdon/hugo-theme-hello-friend-ng
+github.com/athul/archie
+github.com/vickylai/hugo-theme-introduction
+github.com/yoshiharuyamashita/blackburn
+github.com/victoriadrake/hugo-theme-sam
+
+# Tier 3: Minimal/Developer themes
+github.com/nanxiaobei/hugo-paper
+github.com/526avijitgupta/gokarna
+github.com/janraasch/hugo-bearblog
+github.com/track3/hermit
+github.com/monkeyWzr/hugo-theme-cactus
+github.com/colorchestra/smol
+github.com/nodejh/hugo-theme-mini
+github.com/ericmurphyxyz/hugo-starter
+github.com/kimcc/hugo-theme-noteworthy
+github.com/mrmierzejewski/hugo-theme-console
+
+# Tier 4: Magazine/Content-rich themes
+github.com/themefisher/meghna-hugo
+github.com/themefisher/parsa-hugo
+github.com/themefisher/logbook-hugo
+github.com/wowchemy/wowchemy-hugo-themes
+github.com/pacollins/hugo-future-imperfect-slim
+github.com/Vimux/mainroad
+github.com/Vimux/blank
+
+# Tier 5: Unique/Aesthetic themes
+github.com/schnerring/hugo-theme-gruvbox
+github.com/zerostaticthemes/hugo-winston-theme
+github.com/opera7133/toki
+github.com/AmazingRise/hugo-theme-diary
+github.com/alexandrevicenzi/soho
+github.com/g1eny0ung/hugo-theme-dream
+github.com/apvarun/blist-hugo-theme
+github.com/calintat/minimal
+github.com/budparr/gohugo-theme-ananke

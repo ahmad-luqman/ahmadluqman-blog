@@ -1,7 +1,7 @@
 # Makefile for ahmadluqman.com blog
 # Developer-friendly commands for the publishing pipeline
 
-.PHONY: dev build deploy new preview clean help
+.PHONY: dev build deploy new preview clean help build-all-themes
 
 # Default target
 .DEFAULT_GOAL := help
@@ -149,6 +149,25 @@ list-themes: ## Show popular Hugo blog themes
 	@echo "  panr/hugo-theme-terminal  - Terminal/retro aesthetic"
 	@echo ""
 	@echo "Browse all: https://themes.gohugo.io/tags/blog/"
+
+#------------------------------------------------------------------------------
+# Multi-Theme Build (Runtime Theme Switching)
+#------------------------------------------------------------------------------
+
+build-all-themes: ## Build site with all themes for runtime switching
+	@echo "🎨 Building all themes..."
+	@./scripts/build-all-themes.sh
+
+add-theme: ## Add theme to multi-build: make add-theme theme=owner/repo
+ifndef theme
+	$(error Usage: make add-theme theme=owner/repo)
+endif
+	@echo "github.com/$(theme)" >> scripts/themes.txt
+	@echo "✅ Added $(theme) to themes list"
+
+show-themes: ## Show themes in multi-build list
+	@echo "Themes configured for multi-build:"
+	@grep -v '^#' scripts/themes.txt | grep -v '^$$' | nl
 
 open: ## Open site in browser
 	open http://localhost:$(PORT)

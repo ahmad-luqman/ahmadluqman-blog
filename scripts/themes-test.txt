@@ -1,0 +1,4 @@
+# Test theme list - small set for validation
+github.com/adityatelange/hugo-PaperMod
+github.com/panr/hugo-theme-terminal/v4
+github.com/athul/archie

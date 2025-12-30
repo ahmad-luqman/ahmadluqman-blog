@@ -1,10 +1,15 @@
 # Deploy to Cloudflare Pages on push to main
+# Builds site with multiple themes for runtime theme switching
 name: Deploy
 
 on:
   push:
     branches:
       - main
+
+env:
+  # Set to 'true' to build all themes, 'false' for single theme (faster)
+  MULTI_THEME_BUILD: 'true'
 
 jobs:
   deploy:
@@ -17,8 +22,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive
           fetch-depth: 0
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -26,7 +35,17 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Build
+      - name: Initialize Hugo Modules
+        run: hugo mod get -u
+
+      - name: Build (Multi-Theme)
+        if: env.MULTI_THEME_BUILD == 'true'
+        run: |
+          chmod +x ./scripts/build-all-themes.sh
+          ./scripts/build-all-themes.sh
+
+      - name: Build (Single Theme)
+        if: env.MULTI_THEME_BUILD != 'true'
         run: hugo --minify --gc
 
       - name: Deploy to Cloudflare Pages

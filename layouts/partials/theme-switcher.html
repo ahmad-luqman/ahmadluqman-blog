@@ -1,0 +1,3 @@
+{{- /* Theme Switcher Script Injection */ -}}
+{{- $themeSwitcher := resources.Get "js/theme-switcher.js" | minify | fingerprint -}}
+<script src="{{ $themeSwitcher.RelPermalink }}" defer></script>
