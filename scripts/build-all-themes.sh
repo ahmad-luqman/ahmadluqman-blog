@@ -64,7 +64,7 @@ build_manifest() {
     local manifest_file="$PUBLIC_DIR/theme-manifest.json"
     log_info "Building theme manifest..."
 
-    echo '[' > "$manifest_file"
+    printf '[' > "$manifest_file"
     local first=true
 
     while IFS= read -r line || [[ -n "$line" ]]; do
@@ -79,24 +79,20 @@ build_manifest() {
 
         # Only add if theme was built successfully
         if [[ -d "$theme_dir" ]]; then
+            local comma=""
             if [[ "$first" == true ]]; then
                 first=false
             else
-                echo ',' >> "$manifest_file"
+                comma=","
             fi
 
-            cat >> "$manifest_file" << EOF
-  {
-    "id": "$theme_name",
-    "name": "$display_name",
-    "path": "/themes/$theme_name/",
-    "module": "$theme_path"
-  }
-EOF
+            # Write valid JSON (comma on same line as previous object)
+            printf '%s\n  {\n    "id": "%s",\n    "name": "%s",\n    "path": "/themes/%s/",\n    "module": "%s"\n  }' \
+                "$comma" "$theme_name" "$display_name" "$theme_name" "$theme_path" >> "$manifest_file"
         fi
     done < "$THEMES_FILE"
 
-    echo ']' >> "$manifest_file"
+    printf '\n]\n' >> "$manifest_file"
     log_info "Manifest saved to $manifest_file"
 }
 
