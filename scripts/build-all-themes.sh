@@ -2,7 +2,7 @@
 # Build site with multiple themes for runtime switching
 # Usage: ./scripts/build-all-themes.sh
 
-set -e
+set -ex  # Enable debug mode to show each command
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
