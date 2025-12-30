@@ -75,100 +75,93 @@ I exported the Claude Code session transcript. Here's what an afternoon of "AI-a
 
 Here's what an AI-assisted development loop actually looks like:
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                     AI-ASSISTED DEVELOPMENT FLOW                        │
-└─────────────────────────────────────────────────────────────────────────┘
+```text
+┌────────────────────────────────────────────────────────────────┐
+│                  AI-ASSISTED DEVELOPMENT FLOW                  │
+└────────────────────────────────────────────────────────────────┘
 
   ┌──────────┐
-  │   ME     │  "Build a favicon generator with
-  │ (Human)  │   these architecture principles..."
+  │    ME    │   "Build a favicon generator with
+  │ (Human)  │    these architecture principles..."
   └────┬─────┘
        │
        ▼
-  ┌──────────────────────────────────────────────────────┐
-  │                   CLAUDE CODE                         │
-  │  ┌────────────────────────────────────────────────┐  │
-  │  │  Read files → Understand context               │  │
-  │  │       ↓                                        │  │
-  │  │  Plan implementation                           │  │
-  │  │       ↓                                        │  │
-  │  │  Write code → Run tests → Fix errors          │◄─┼──┐
-  │  │       ↓                    ↑                   │  │  │
-  │  │       └────────────────────┘                   │  │  │
-  │  │            (auto-iterate)                      │  │  │
-  │  └────────────────────────────────────────────────┘  │  │
-  └───────────────────────┬──────────────────────────────┘  │
-                          │                                  │
-                          ▼                                  │
-                   ┌─────────────┐                           │
-                   │   Output    │                           │
-                   │  "Here's    │                           │
-                   │  what I     │                           │
-                   │  built..."  │                           │
-                   └──────┬──────┘                           │
-                          │                                  │
-                          ▼                                  │
-                   ┌─────────────┐      ┌──────────────┐     │
-                   │   ME        │ YES  │  Next task   │─────┘
-                   │  Review &   │─────►│  or tweak    │
-                   │  Decide     │      └──────────────┘
-                   └──────┬──────┘
-                          │ NO (ship it)
-                          ▼
-                   ┌─────────────┐
-                   │   COMMIT    │
-                   └─────────────┘
+  ┌────────────────────────────────────────────────────────┐
+  │                     CLAUDE CODE                        │
+  │                                                        │
+  │    Read files ──► Plan ──► Write ──► Test ──► Fix     │
+  │                                        │       │      │
+  │                                        └───────┘      │
+  │                                      (auto-iterate)   │
+  │                                                        │
+  └────────────────────────┬───────────────────────────────┘
+                           │
+                           ▼
+                    ┌─────────────┐
+                    │   Output    │
+                    │  "Here's    │
+                    │  what I     │
+                    │  built..."  │
+                    └──────┬──────┘
+                           │
+                           ▼
+                    ┌─────────────┐       ┌──────────────┐
+                    │     ME      │  YES  │  Next task   │
+                    │  Review &   │──────►│  or tweak    │───┐
+                    │   Decide    │       └──────────────┘   │
+                    └──────┬──────┘                          │
+                           │ NO                              │
+                           ▼                                 │
+                    ┌─────────────┐                          │
+                    │   COMMIT    │        ┌────────────────┘
+                    └─────────────┘        │
+                                           ▼
+                                    (back to Claude)
 ```
 
 The key insight: **I prompted 27 times, but Claude iterated hundreds of times internally** (reading, writing, testing, fixing) between my prompts.
 
 ### The Architecture That Emerged
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                      SVG-PIPELINE ARCHITECTURE                          │
-└─────────────────────────────────────────────────────────────────────────┘
+```text
+┌────────────────────────────────────────────────────────────────┐
+│                   SVG-PIPELINE ARCHITECTURE                    │
+└────────────────────────────────────────────────────────────────┘
 
-                         ┌─────────────┐
-                         │   CLI       │  svg-pipeline generate logo.svg
-                         │  (Typer)    │
-                         └──────┬──────┘
-                                │
-                                ▼
-  ┌──────────────────────────────────────────────────────────────────────┐
-  │                          PIPELINE                                     │
-  │                                                                       │
-  │   logo.svg ──► Backend ──► Transforms ──► Executor ──► Outputs       │
-  │                                                                       │
-  └──────────────────────────────────────────────────────────────────────┘
-         │              │              │              │
-         ▼              ▼              ▼              ▼
-  ┌────────────┐ ┌────────────┐ ┌────────────┐ ┌────────────┐
-  │  Presets   │ │  Backends  │ │ Transforms │ │ Executors  │
-  │            │ │            │ │            │ │            │
-  │ ┌────────┐ │ │ ┌────────┐ │ │ ┌────────┐ │ │ ┌────────┐ │
-  │ │  web   │ │ │ │ Pillow │ │ │ │ resize │ │ │ │ Sequential│
-  │ ├────────┤ │ │ ├────────┤ │ │ ├────────┤ │ │ ├────────┤ │
-  │ │ mobile │ │ │ │OpenCV* │ │ │ │ color  │ │ │ │ Thread  │ │
-  │ ├────────┤ │ │ ├────────┤ │ │ ├────────┤ │ │ ├────────┤ │
-  │ │  full  │ │ │ │  GPU*  │ │ │ │ convert│ │ │ │ Process │ │
-  │ └────────┘ │ │ └────────┘ │ │ └────────┘ │ │ └────────┘ │
-  └────────────┘ └────────────┘ └────────────┘ └────────────┘
-                  * = future
-
-                                │
-                                ▼
-                    ┌───────────────────────┐
-                    │       OUTPUT          │
-                    │                       │
-                    │  favicon.ico          │
-                    │  favicon-32x32.png    │
-                    │  apple-touch-icon.png │
-                    │  og-image.png         │
-                    │  site.webmanifest     │
-                    │  ...                  │
-                    └───────────────────────┘
+                      ┌─────────────────┐
+                      │       CLI       │
+                      │     (Typer)     │
+                      └────────┬────────┘
+                               │
+                               ▼
+┌────────────────────────────────────────────────────────────────┐
+│                          PIPELINE                              │
+│                                                                │
+│  logo.svg ──► Backend ──► Transforms ──► Executor ──► Output  │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+       │              │              │              │
+       ▼              ▼              ▼              ▼
+┌──────────────┐┌──────────────┐┌──────────────┐┌──────────────┐
+│   Presets    ││   Backends   ││  Transforms  ││  Executors   │
+│              ││              ││              ││              │
+│  • web       ││  • Pillow    ││  • resize    ││  • Sequential│
+│  • mobile    ││  • OpenCV*   ││  • color     ││  • Thread    │
+│  • full      ││  • GPU*      ││  • convert   ││  • Process   │
+│              ││              ││              ││              │
+└──────────────┘└──────────────┘└──────────────┘└──────────────┘
+                      (* = future)
+                               │
+                               ▼
+                      ┌─────────────────┐
+                      │     OUTPUT      │
+                      │                 │
+                      │  favicon.ico    │
+                      │  favicon.png    │
+                      │  og-image.png   │
+                      │  manifest.json  │
+                      │  ...            │
+                      └─────────────────┘
 ```
 
 This architecture wasn't in my original prompt—Claude inferred it from my principles and built something extensible.
