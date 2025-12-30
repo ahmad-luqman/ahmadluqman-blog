@@ -141,16 +141,16 @@ build_all_themes() {
         # Update config with this theme
         set_theme "$theme_path"
 
-        # Fetch theme module
-        if ! hugo mod get -u 2>/dev/null; then
+        # Fetch theme module (30s timeout)
+        if ! timeout 30 hugo mod get -u 2>/dev/null; then
             log_warn "Failed to fetch module: $theme_path"
             ((++failed))
             failed_themes="$failed_themes\n  - $theme_name"
             continue
         fi
 
-        # Build to theme directory
-        if hugo --minify --gc -d "$theme_output" 2>/dev/null; then
+        # Build to theme directory (60s timeout)
+        if timeout 60 hugo --minify --gc -d "$theme_output" 2>/dev/null; then
             ((++success))
             log_info "Built: $theme_name"
         else
