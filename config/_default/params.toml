@@ -1,6 +1,9 @@
 # Congo theme parameters
 # https://jpanther.github.io/congo/docs/configuration/
 
+# Site description for SEO (appears in search results)
+description = "Thoughts on software architecture, AI agents, and building with LLMs. Learning, experimenting, and sharing along the way."
+
 # Color scheme - we'll create a custom "dracula" scheme
 colorScheme = "dracula"
 
