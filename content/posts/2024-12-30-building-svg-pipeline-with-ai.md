@@ -137,7 +137,7 @@ The key insight: **I prompted 27 times, but Claude iterated hundreds of times in
 ┌────────────────────────────────────────────────────────────────┐
 │                          PIPELINE                              │
 │                                                                │
-│  logo.svg ──► Backend ──► Transforms ──► Executor ──► Output  │
+│  logo.svg ──► Backend ──► Transforms ──► Executor ──► Output   │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
        │              │              │              │
