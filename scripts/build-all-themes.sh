@@ -145,8 +145,9 @@ build_all_themes() {
             continue
         fi
 
-        # Build to theme directory (60s timeout)
-        if timeout 60 hugo --minify --gc -d "$theme_output" 2>/dev/null; then
+        # Build to theme directory with correct baseURL (60s timeout)
+        local theme_base_url="https://blog.ahmadluqman.com/themes/$theme_name/"
+        if timeout 60 hugo --minify --gc -d "$theme_output" --baseURL "$theme_base_url" 2>/dev/null; then
             ((++success))
             log_info "Built: $theme_name"
         else
