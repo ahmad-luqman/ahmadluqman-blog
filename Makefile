@@ -124,9 +124,31 @@ clean: ## Clean build artifacts
 	rm -rf public/ resources/ .hugo_build.lock
 	@echo "🧹 Cleaned!"
 
-update-theme: ## Update Congo theme
-	git submodule update --remote themes/congo
+update-theme: ## Update current theme module
+	hugo mod get -u
+	hugo mod tidy
 	@echo "✅ Theme updated"
+
+switch-theme: ## Switch theme: make switch-theme theme=owner/repo
+ifndef theme
+	$(error Usage: make switch-theme theme=jpanther/congo/v2)
+endif
+	@echo "🔄 Switching to theme: $(theme)"
+	@sed -i '' 's|path = "github.com/[^"]*"|path = "github.com/$(theme)"|' config/_default/hugo.toml
+	hugo mod get -u
+	hugo mod tidy
+	@echo "✅ Theme switched to $(theme)"
+	@echo "⚠️  Note: You may need to update config/_default/params.toml for this theme"
+
+list-themes: ## Show popular Hugo blog themes
+	@echo "Popular Hugo blog themes (use with switch-theme):"
+	@echo "  jpanther/congo/v2         - Current theme (modern, feature-rich)"
+	@echo "  adityatelange/hugo-PaperMod - Clean, fast, minimal"
+	@echo "  CaiJimmy/hugo-theme-stack - Card-style, photo-friendly"
+	@echo "  luizdepra/hugo-coder      - Developer-focused, minimal"
+	@echo "  panr/hugo-theme-terminal  - Terminal/retro aesthetic"
+	@echo ""
+	@echo "Browse all: https://themes.gohugo.io/tags/blog/"
 
 open: ## Open site in browser
 	open http://localhost:$(PORT)

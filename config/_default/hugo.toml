@@ -4,7 +4,12 @@
 baseURL = "https://blog.ahmadluqman.com/"
 languageCode = "en"
 title = "Ahmad Luqman"
-theme = "congo"
+
+# Theme via Hugo Modules (replaces git submodule)
+# To switch themes, change the module.imports.path below
+[module]
+  [[module.imports]]
+    path = "github.com/jpanther/congo/v2"
 
 # Build settings
 enableRobotsTXT = true
